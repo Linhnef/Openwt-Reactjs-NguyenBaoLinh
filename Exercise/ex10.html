@@ -1,0 +1,36 @@
+//10.
+
+<!DOCTYPE html>
+<html>
+    <script>
+        
+        function muti(){
+            let a = parseInt(document.getElementById("a").value);
+            let b = parseInt(document.getElementById("b").value);
+            document.getElementById("rs").innerHTML = "the resuilt is :" + a*b;
+        }
+        function devi(){
+            let a = parseInt(document.getElementById("a").value);
+            let b = parseInt(document.getElementById("b").value);
+            document.getElementById("rs").innerHTML = "the resuilt is :" + a/b;
+        }
+    </script>
+    <style>
+        div {
+            border-style: solid;
+            text-align: center;
+        }
+    </style>
+<body>
+    <div>
+    <h1>Calculater !</h1>
+    <label for="a">Input put : </label>
+    <input id="a" type="text"> <br />
+    <label for="b">Input put : </label>
+    <input id="b" type="text"> <br />
+    <button onclick="muti()">mutiply</button>
+    <button onclick="devi()">devide</button>
+    <p id="rs">the resuilt is :</p>
+    </div>
+</body>
+</html>

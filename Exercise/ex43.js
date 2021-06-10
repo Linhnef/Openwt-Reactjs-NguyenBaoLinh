@@ -8,4 +8,3 @@ function check(a,b,c){
     return false;
 }
 console.log(check(658,687,368));
-

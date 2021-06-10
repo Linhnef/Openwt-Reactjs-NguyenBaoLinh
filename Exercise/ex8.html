@@ -1,0 +1,22 @@
+//8.
+
+<!DOCTYPE html>
+<html>
+    <script>
+        function check(){
+            
+            let ran = Math.floor(Math.random() * 11);
+            let val = document.getElementById("inp").value;
+            if(ran != val){
+                alert('Not matched !');
+            }else{
+                alert('Good work !');
+            }
+        }
+    </script>
+<body>
+    <h1>Input a number <= 10!</h1>
+    <input id="inp" type="text">
+    <button onclick="check()">Submit</button>
+</body>
+</html>
