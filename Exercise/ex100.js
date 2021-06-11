@@ -8,4 +8,4 @@ function check(a,b){
 }
 
 console.log(check([1,2,3], [3,4,5]));   
-console.log(check([1,2,3], [5,6,7])); 
+console.log(check([1,2,3], [5,6,7]));
