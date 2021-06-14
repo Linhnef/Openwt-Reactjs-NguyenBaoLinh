@@ -9,7 +9,7 @@ function change(x){
     let rs = [];
     for(i=0;i<x.length/2;i++){
         rs[i] =  x[i+x.length/2];
-        rs[i+x.length/2] = x[i];
+        rs[i+x.length/2] = ex[i];
     }
     return rs;
 }
