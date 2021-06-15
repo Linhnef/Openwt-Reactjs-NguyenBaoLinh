@@ -1,15 +1,11 @@
 let find_ =(arr,indexs) => {
+    let rs = [];
     arr.map(elemen => {
-        let rs = [];
         for(i=0;i<indexs.length;i++){
             if(arr.indexOf(elemen) == indexs[i]) rs.push(elemen);
         }
-        let rs_ = [];
-        rs.forEach(element => {
-            if(element != undefined) rs_.push(element);
-        });
-        return rs_;
-    })
+    });
+    return rs;
 
 }
 let arra1 = ['a', 'b', 'c', 'd', 'e', 'f'];

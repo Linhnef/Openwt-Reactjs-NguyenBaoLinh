@@ -18,6 +18,7 @@ const JSON_to_CSV = (arr, columns, delimiter = ',') =>{
         rs.push(tmp);
        
     });
+    
     return rs.join('\n');
 }
 
