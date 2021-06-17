@@ -1,14 +1,9 @@
-let group = (arr,fn) => {
-    if (typeof fn == 'function'){
-        return arr.reduce((rs,val) => {
-            rs[val] = fn(val);
-            return rs;
-        },{})
-    }else{
-        return null;
-    }
-}
-
-console.log(group([6.1, 4.2, 6.3], Math.sqrt)); 
-console.log(group([6.1, 4.2, 6.3], Math.floor)); 
-console.log(group(['one', 'two', 'three'], 'length'));
+//#Source https://bit.ly/2neWfJ2 
+const group_By = (arr, fn) =>
+  arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val, i) => {
+    acc[val] = (acc[val] || []).concat(arr[i]);
+    return acc;
+  }, {});
+console.log(group_By([6.1, 4.2, 6.3], Math.sqrt)); 
+console.log(group_By([6.1, 4.2, 6.3], Math.floor)); 
+console.log(group_By(['one', 'two', 'three'], 'length'));
