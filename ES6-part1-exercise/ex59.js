@@ -1,14 +1,14 @@
-const bindKey = (context, fn, ...args) =>
-  function() {
-    return context[fn].apply(context, args.concat(...arguments));
-  };
 
-  const freddy = {
-    user: 'fred',
-    greet: function(greeting, punctuation) {
-      return greeting + ' ' + this.user + punctuation;
-    }
-  };
 
-  const freddyBound = bindKey(freddy, 'greet');
-  console.log(freddyBound('hi', '!'));
+
+  //#Source https://bit.ly/2neWfJ2 
+const bind = (fn, context, ...args) =>
+function() {
+  return fn.apply(context, args.concat(...arguments));
+};
+function greet(greeting, punctuation) {
+return greeting + ' ' + this.user + punctuation;
+}
+const freddy = { user: 'Morning' };
+const freddyBound = bind(greet, freddy);
+console.log(freddyBound('Good', '!'));

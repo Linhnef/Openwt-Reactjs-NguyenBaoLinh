@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+  const on = (el, evt, fn, opts = {}) => {
+  const delegatorFn = e => e.target.matches(opts.target) && fn.call(e.target, e);
+  el.addEventListener(evt, opts.target ? delegatorFn : fn, opts.options || false);
+  if (opts.target) return delegatorFn;
+};
+
+const fn = () => console.log('!');
+console.log(on(document.body, 'click', fn));  
+console.log(on(document.body, 'click', fn, { target: 'p' }));  
+console.log(on(document.body, 'click', fn, { options: true }));
+</script>
+<body>
+  
+</body>
+</html>

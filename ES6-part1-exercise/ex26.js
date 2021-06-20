@@ -4,4 +4,4 @@ const yes_No = (val, def = false) =>
 console.log(yes_No('Y')); 
 console.log(yes_No('yes'));  
 console.log(yes_No('No')); 
-console.log(yes_No('Foo', true));  
+console.log(yes_No('Foo', true));   

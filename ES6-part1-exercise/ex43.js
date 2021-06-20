@@ -8,7 +8,6 @@ arg.push(p1);
 arg.push(p2);
 arg.push(p3);
 
-
 Promise.all(arg)
 .then(rs => {
     console.log(rs);
