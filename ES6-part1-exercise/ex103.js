@@ -1,4 +1,5 @@
-const when = (pred, whenTrue) => x => (pred(x) ? whenTrue(x) : x);
-const doubleEvenNumbers = when(x => x % 2 === 0, x => x * 2);
-console.log(doubleEvenNumbers(2));
-console.log(doubleEvenNumbers(1));
+
+
+const words = (str, pattern = /[^a-zA-Z-]+/) => str.split(pattern).filter(Boolean);
+console.log(words('I love javaScript!!')); 
+console.log(words('python, java, php'));
