@@ -9,4 +9,5 @@
 <hr />
 <h2>Run </h2>
 <p> Install nodejs and npm.</p>
-<p> git clone </p>
+<p> git clone https://github.com/Linhnef/Openwt-Reactjs-NguyenBaoLinh.git</p>
+<p> npm start</p>
