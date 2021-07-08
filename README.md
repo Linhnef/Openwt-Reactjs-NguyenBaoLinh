@@ -5,7 +5,7 @@
 <p> State Management by redux toolkit, redux thunk and react hook useState.</p>
 <p> Style by styled-components.</p>
 <p> Routing by react-reouter-dom.</p>
-<p> .</p>
+<p> Deploy in firebase.</p>
 <hr />
 <h2>Run </h2>
 <p> Install nodejs and npm.</p>
