@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
 
+
 export const useAsync = (Function : () => Promise<any>) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<any>();
   const [error, setError] = useState(null);
 
-  const fetch = async ()=>{ 
+  const fetch = React.useCallback( async ()=>{ 
       setLoading(true);
       setError(null);
       try{
@@ -18,11 +19,11 @@ export const useAsync = (Function : () => Promise<any>) => {
         setLoading(false);
         return error;
       }
-  };
+  },[Function]);
 
   useEffect(() => {
     fetch();
   },[fetch]);
 
-  return { loading,data,error }
+  return { loading,data,error,fetch }
 }
