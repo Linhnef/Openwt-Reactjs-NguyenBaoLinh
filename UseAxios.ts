@@ -1,54 +1,36 @@
-import * as React from 'react';
-import  { CancelTokenSource } from 'axios';
-import {orderProps, productProps} from '../interface/productInterface';
-import {ModalOverlay} from '../component/FoodApp/card/Card';
-import {ItemProducts} from '../component/FoodApp/product/ItemProdcuts';
-import {CartContext} from '../store/foodContext';
-import AxiosClient from '../API/axiosClient';
+import { AxiosResponse } from "axios";
+import React, {useEffect, useState} from "react";
 
+export const useAsync = (Function : () => Promise<AxiosResponse<any>>) => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<AxiosResponse<any>>();
+  const [error, setError] = useState(null);
 
-
-
-interface useFectProps{
-  header : {}
-}
-
-
-export const UseFetch = (props : useFectProps) => {
-
-
-  const [data,setData]= React.useState(defaultData);
-  const [loading,setLoading] = React.useState<boolean>(true);
-  const [error,setError] = React.useState<string>('');
-  const cancelToken = axios.CancelToken;
-  const [cancelTokenSource,setCancelTokenSource] = React.useState<CancelTokenSource>(cancelToken.source());
-
-  const handleCancelClick = () => {
-    if (cancelTokenSource) {
-      cancelTokenSource.cancel('User cancelled operation');
-    }
-  }  
-
-  React.useEffect(() => {
-    AxiosClient(props.header)
-      .then((response) => {
-        setData(response.data);
+  const fetch = async ()=>{ 
+      setLoading(true);
+      setError(null);
+      try{
+        const response = await Function();
+        setData(response);
         setLoading(false);
-      })
-      .catch((err) => {
+        return response;
+      }catch(err){
         let error = axios.isCancel(err)
-          ? 'Request Cancelled'
-          : err.code === 'ECONNABORTED'
-          ? 'A timeout has occurred'
-          : err.response.status === 404
-          ? 'Resource Not Found'
-          : 'An unexpected error has occurred';
-        setError(error);
+              ? 'Request Cancelled'
+              : err.code === 'ECONNABORTED'
+              ? 'A timeout has occurred'
+              : err.response.status === 404
+              ? 'Resource Not Found'
+              : 'An unexpected error has occurred';
+        setError(err);
         setLoading(false);
-      });
-  },[props.header]);
+        return error;
+      }
+  };
 
-  return { data,error,loading}
+  useEffect(() => {
+    fetch();
+  },[fetch]);
 
+  return { loading,data,error }
 }
-  
