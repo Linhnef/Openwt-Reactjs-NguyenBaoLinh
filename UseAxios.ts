@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 
 
-export const useAsync = (Function : () => Promise<any>) => {
+export const useAsync = (asyncFunction : () => Promise<any>) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<any>();
   const [error, setError] = useState(null);
@@ -17,7 +17,7 @@ export const useAsync = (Function : () => Promise<any>) => {
       }catch(err){
         setError(err);
         setLoading(false);
-        return error;
+        return err;
       }
   },[Function]);
 
