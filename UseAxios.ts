@@ -1,29 +1,34 @@
 import React, {useEffect, useState} from "react";
 
 
-export const useAsync = (asyncFunction : () => Promise<any>) => {
+function useAsync<T>(asyncFunction : () => Promise<T>){
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<any>();
+  const [data, setData] = useState<T>();
   const [error, setError] = useState(null);
+  const [run,setRun] = useState(false);
+
+  const onRun = () => {
+    setRun(true);
+  }
 
   const fetch = React.useCallback( async ()=>{ 
       setLoading(true);
       setError(null);
       try{
-        const response = await Function();
+        const response = await asyncFunction();
         setData(response);
         setLoading(false);
         return response;
       }catch(err){
         setError(err);
         setLoading(false);
-        return err;
+        return error;
       }
-  },[Function]);
+  },[asyncFunction]);
 
   useEffect(() => {
-    fetch();
-  },[fetch]);
+    if(run) fetch(); 
+  },[run]);
 
-  return { loading,data,error,fetch }
+  return { loading,data,error,fetch,onRun }
 }
