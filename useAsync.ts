@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 
 
 export const useAsync = (asyncFunction : () => Promise<number>,active? : boolean) => {
-  active = (active) ? active : true;
+  active = (active !== true && active !== false) ? active : true;
   const [loading, setLoading] = React.useState(false);
   const [data, setData] = React.useState<number>();
   const [error, setError] = React.useState(null);
