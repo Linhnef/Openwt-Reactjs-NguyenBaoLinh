@@ -1,15 +1,11 @@
 import React, {useEffect, useState} from "react";
 
 
-function useAsync<T>(asyncFunction : () => Promise<T>){
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<T>();
-  const [error, setError] = useState(null);
-  const [run,setRun] = useState(false);
-
-  const onRun = () => {
-    setRun(true);
-  }
+export const useAsync = (asyncFunction : () => Promise<number>,active? : boolean) => {
+  active = (active) ? active : true;
+  const [loading, setLoading] = React.useState(false);
+  const [data, setData] = React.useState<number>();
+  const [error, setError] = React.useState(null);
 
   const fetch = React.useCallback( async ()=>{ 
       setLoading(true);
@@ -26,9 +22,9 @@ function useAsync<T>(asyncFunction : () => Promise<T>){
       }
   },[asyncFunction]);
 
-  useEffect(() => {
-    if(run) fetch(); 
-  },[run]);
+  React.useEffect(() => {
+    if(active) fetch();
+  },[fetch,active]);
 
-  return { loading,data,error,fetch,onRun }
+  return { loading,data,error,fetch }
 }
