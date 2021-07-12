@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
 
 
-export const useAsync = (asyncFunction : () => Promise<number>,active : boolean) => {
+export const useAsync = (asyncFunction : () => Promise<any>,active : boolean) => {
   const [loading, setLoading] = React.useState(false);
-  const [data, setData] = React.useState<number>();
+  const [data, setData] = React.useState<any>();
   const [error, setError] = React.useState(null);
 
   const fetch = React.useCallback( async ()=>{ 
